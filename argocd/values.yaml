@@ -1,0 +1,16 @@
+---
+createAggregateRoles: true
+configs:
+  params:
+    application.namespaces: "*"
+controller:
+  clusterAdminAccess:
+    enabled: true
+server:
+  clusterAdminAccess:
+    enabled: true
+repoServer:
+  clusterAdminAccess:
+    enabled: true
+dex:
+  enabled: false
