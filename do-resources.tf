@@ -8,8 +8,7 @@ resource "digitalocean_project" "default" {
 resource "random_pet" "do-k8s-cluster" {}
 
 module "do-k8s-cluster" {
-  source  = "kroche-co/k8s-cluster/digitalocean"
-  version = "0.2.1"
+  source  = "github.com/kroche-co/terraform-digitalocean-k8s-cluster.git"
 
   name                      = "${digitalocean_project.default.name}-${random_pet.do-k8s-cluster.id}"
   region                    = "ams3"
