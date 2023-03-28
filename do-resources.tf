@@ -9,7 +9,7 @@ resource "random_pet" "k8s-cluster" {
   # If I want to recreate or migrate to a new cluster,
   # I can add a number to the list, create an additional cluster
   # and then delete the previous one.
-  for_each = toset([0])
+  for_each = toset(["001"])
 }
 
 module "do-k8s-cluster" {
