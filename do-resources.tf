@@ -14,7 +14,9 @@ resource "random_pet" "k8s-cluster" {
 
 module "do-k8s-cluster" {
   for_each = random_pet.k8s-cluster
-  source   = "github.com/kroche-co/terraform-digitalocean-k8s-cluster.git"
+
+  source  = "kroche-co/k8s-cluster/digitalocean"
+  version = "0.2.0"
 
   name                      = "${digitalocean_project.default.name}-${each.value.id}"
   region                    = "ams3"
