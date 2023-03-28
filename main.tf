@@ -1,6 +1,6 @@
 terraform {
   backend "remote" {
-    hostname = "app.terraform.io"
+    hostname     = "app.terraform.io"
     organization = "kroche"
 
     workspaces {
@@ -10,7 +10,7 @@ terraform {
 
   required_providers {
     random = {
-      source = "hashicorp/random"
+      source  = "hashicorp/random"
       version = ">= 3.4.0"
     }
     digitalocean = {
@@ -20,10 +20,6 @@ terraform {
     helm = {
       source  = "hashicorp/helm"
       version = ">= 2.9.0"
-    }
-    kubernetes = {
-      source  = "hashicorp/kubernetes"
-      version = ">= 2.18.1"
     }
     kubectl = {
       source  = "gavinbunney/kubectl"

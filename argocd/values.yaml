@@ -3,6 +3,11 @@ createAggregateRoles: true
 configs:
   params:
     application.namespaces: "*"
+  repositories:
+    argocd-cluster:
+      type: "git"
+      url: "https://github.com/kroche-co/argocd-cluster.git"
+      project: "default"
 controller:
   clusterAdminAccess:
     enabled: true

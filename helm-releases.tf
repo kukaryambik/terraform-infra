@@ -22,4 +22,14 @@ resource "helm_release" "argocd" {
   values = [
     "${file("argocd/values.yaml")}"
   ]
+
+  set_sensitive {
+    name  = "configs.repositories.argocd-cluster.username"
+    value = var.ARGOCD_USERNAME
+  }
+
+  set_sensitive {
+    name  = "configs.repositories.argocd-cluster.password"
+    value = var.ARGOCD_PASSWORD
+  }
 }
