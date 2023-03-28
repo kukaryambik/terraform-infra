@@ -38,7 +38,7 @@ resource "kubectl_manifest" "onepassword-credentials" {
   override_namespace = local.opns
   server_side_apply  = true
   yaml_body = templatefile(
-    "onepassword-connect/secret_onepassword-credantials.yaml",
+    "onepassword-connect/secret_onepassword-credentials.yaml",
     { creds = base64encode(var.OP_CREDENTIALS) }
   )
 }
