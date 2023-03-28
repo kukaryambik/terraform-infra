@@ -5,20 +5,13 @@ resource "digitalocean_project" "default" {
   environment = "Production"
 }
 
-resource "random_pet" "k8s-cluster" {
-  # If I want to recreate or migrate to a new cluster,
-  # I can add a number to the list, create an additional cluster
-  # and then delete the previous one.
-  for_each = toset(["001"])
-}
+resource "random_pet" "do-k8s-cluster" {}
 
 module "do-k8s-cluster" {
-  for_each = random_pet.k8s-cluster
-
   source  = "kroche-co/k8s-cluster/digitalocean"
   version = "0.2.0"
 
-  name                      = "${digitalocean_project.default.name}-${each.value.id}"
+  name                      = "${digitalocean_project.default.name}-${random_pet.do-k8s-cluster}"
   region                    = "ams3"
   kubernetes_version_prefix = "1.24."
   auto_upgrade              = true
