@@ -11,7 +11,7 @@ module "do-k8s-cluster" {
   source  = "kroche-co/k8s-cluster/digitalocean"
   version = "0.2.0"
 
-  name                      = "${digitalocean_project.default.name}-${random_pet.do-k8s-cluster}"
+  name                      = "${digitalocean_project.default.name}-${random_pet.do-k8s-cluster.id}"
   region                    = "ams3"
   kubernetes_version_prefix = "1.24."
   auto_upgrade              = true
