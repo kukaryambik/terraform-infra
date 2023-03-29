@@ -20,6 +20,7 @@ resource "kubectl_manifest" "argocd-appset" {
 
 resource "kubectl_manifest" "onepassword-connect-ns" {
   server_side_apply = true
+  apply_only        = true
   ignore_fields = [
     "metadata.annotations",
     "metadata.labels",
@@ -28,9 +29,6 @@ resource "kubectl_manifest" "onepassword-connect-ns" {
     "onepassword-connect/ns_onepassword-connect.yaml",
     { name = local.opns }
   )
-  lifecycle {
-    prevent_destroy = true
-  }
 }
 
 resource "kubectl_manifest" "onepassword-credentials" {
