@@ -16,6 +16,7 @@ configs:
               - name: kroche-co
   params:
     application.namespaces: "*"
+    server.enable.gzip: true
   repositories:
     argocd-cluster:
       type: "git"
