@@ -1,6 +1,19 @@
 ---
 createAggregateRoles: true
 configs:
+  cm:
+    admin.enabled: false
+    url: "https://argocd.kroche.co"
+    dex.config: |
+      connectors:
+        - type: github
+          id: github
+          name: GitHub
+          config:
+            clientID: $argocd-github-oauth:client-id
+            clientSecret: $argocd-github-oauth:client-secret
+            orgs:
+              - name: kroche-co
   params:
     application.namespaces: "*"
   repositories:
@@ -8,6 +21,12 @@ configs:
       type: "git"
       url: "https://github.com/kroche-co/argocd-cluster.git"
       project: "default"
+  rbac:
+    create: true
+    policy.default: "role:readonly"
+    policy.csv: |
+      g, kroche-co:infra, role:admin
+    scopes: "[groups]"
 controller:
   clusterAdminAccess:
     enabled: true
@@ -18,4 +37,4 @@ repoServer:
   clusterAdminAccess:
     enabled: true
 dex:
-  enabled: false
+  enabled: true
