@@ -37,7 +37,7 @@ module "do-k8s-cluster" {
 }
 
 data "digitalocean_kubernetes_cluster" "default" {
-  depends_on = module.do-k8s-cluster
+  depends_on = [module.do-k8s-cluster]
 
   name = module.do-k8s-cluster.name
 }
