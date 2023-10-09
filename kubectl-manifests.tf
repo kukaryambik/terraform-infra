@@ -4,9 +4,9 @@ locals {
 
 provider "kubectl" {
   host  = data.digitalocean_kubernetes_cluster.default.endpoint
-  token = data.digitalocean_kubernetes_cluster.default.kube_config.token
+  token = data.digitalocean_kubernetes_cluster.default.kube_config.0.token
   cluster_ca_certificate = base64decode(
-    data.digitalocean_kubernetes_cluster.default.kube_config.cluster_ca_certificate
+    data.digitalocean_kubernetes_cluster.default.kube_config.0.cluster_ca_certificate
   )
   load_config_file = false
 }
