@@ -25,7 +25,7 @@ resource "digitalocean_app" "soursa-addon-test" {
       name = "backend"
 
       # An environment slug describing the type of this app.
-      environment_slug = "backend"
+      # environment_slug = "backend"
 
       # The amount of instances that this component should be scaled to.
       instance_count = 1
