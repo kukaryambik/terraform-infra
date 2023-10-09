@@ -12,7 +12,7 @@ provider "kubectl" {
 }
 
 resource "kubectl_manifest" "argocd-appset" {
-  count              = var.first_run ? 0 : 1
+
   depends_on         = [helm_release.argocd]
   override_namespace = "argocd"
   server_side_apply  = true
@@ -20,7 +20,7 @@ resource "kubectl_manifest" "argocd-appset" {
 }
 
 resource "kubectl_manifest" "onepassword-connect-ns" {
-  count             = var.first_run ? 0 : 1
+
   server_side_apply = true
   apply_only        = true
   ignore_fields = [
@@ -34,7 +34,7 @@ resource "kubectl_manifest" "onepassword-connect-ns" {
 }
 
 resource "kubectl_manifest" "onepassword-credentials" {
-  count              = var.first_run ? 0 : 1
+
   depends_on         = [kubectl_manifest.onepassword-connect-ns]
   override_namespace = local.opns
   server_side_apply  = true
@@ -45,7 +45,7 @@ resource "kubectl_manifest" "onepassword-credentials" {
 }
 
 resource "kubectl_manifest" "onepassword-token" {
-  count              = var.first_run ? 0 : 1
+
   depends_on         = [kubectl_manifest.onepassword-connect-ns]
   override_namespace = local.opns
   server_side_apply  = true
