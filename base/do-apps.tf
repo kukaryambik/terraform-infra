@@ -7,12 +7,12 @@ resource "digitalocean_app" "soursa-addon-test" {
     # The name of the app. Must be unique across all apps in the same account.
     name   = "soursa-addon-test"
     region = "ams" # Amsterdam
-    domain {
-      # The hostname for the domain.
-      name = "soursa.ondigitalocean.app"
-      # The domain type
-      type = "DEFAULT" # The default .ondigitalocean.app domain assigned to this app.
-    }
+    # domain {
+    #   # The hostname for the domain.
+    #   name = "soursa.ondigitalocean.app"
+    #   # The domain type
+    #   type = "DEFAULT" # The default .ondigitalocean.app domain assigned to this app.
+    # }
 
     # Describes an alert policy for the app.
     alert {
