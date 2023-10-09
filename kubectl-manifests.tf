@@ -2,10 +2,6 @@ locals {
   opns = "onepassword-connect"
 }
 
-data "digitalocean_kubernetes_cluster" "default" {
-  name = module.do-k8s-cluster.name
-}
-
 provider "kubectl" {
   host  = data.digitalocean_kubernetes_cluster.default.endpoint
   token = data.digitalocean_kubernetes_cluster.default.kube_config.token

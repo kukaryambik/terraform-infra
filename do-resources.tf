@@ -35,3 +35,9 @@ module "do-k8s-cluster" {
     day        = "monday"
   }
 }
+
+data "digitalocean_kubernetes_cluster" "default" {
+  depends_on = module.do-k8s-cluster
+
+  name = module.do-k8s-cluster.name
+}

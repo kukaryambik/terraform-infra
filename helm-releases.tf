@@ -1,7 +1,3 @@
-data "digitalocean_kubernetes_cluster" "default" {
-  name = module.do-k8s-cluster.name
-}
-
 provider "helm" {
   kubernetes {
     host  = data.digitalocean_kubernetes_cluster.default.endpoint
@@ -17,7 +13,7 @@ resource "helm_release" "argocd" {
   name       = "argocd"
   repository = "https://argoproj.github.io/argo-helm"
   chart      = "argo-cd"
-  version    = "5.34.1"
+  version    = "5.46.7"
   atomic     = true
   timeout    = 600
 
