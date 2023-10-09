@@ -9,7 +9,7 @@ provider "helm" {
 }
 
 resource "helm_release" "argocd" {
-  count      = var.first_run ? 0 : 1
+  count      = var.first_run ? 0 : 0
   name       = "argocd"
   repository = "https://argoproj.github.io/argo-helm"
   chart      = "argo-cd"
