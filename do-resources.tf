@@ -9,7 +9,7 @@ resource "random_pet" "do-k8s-cluster" {}
 
 module "do-k8s-cluster" {
   source  = "kroche-co/k8s-cluster/digitalocean"
-  version = "v0.2.2"
+  version = "v0.2.3"
 
   depends_on = [digitalocean_project.default]
 
