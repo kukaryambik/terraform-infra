@@ -17,7 +17,7 @@ module "do-k8s-cluster" {
 
   name                      = "${digitalocean_project.default.name}-${random_pet.do-k8s-cluster.id}"
   region                    = "ams3"
-  kubernetes_version_prefix = "1.24."
+  kubernetes_version_prefix = "1.25."
   auto_upgrade              = true
   surge_upgrade             = true
 
