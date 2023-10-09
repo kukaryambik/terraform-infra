@@ -22,3 +22,8 @@ variable "GIT_CREDS" {
   type      = string
   sensitive = true
 }
+
+variable "first_run" {
+  type    = bool
+  default = true
+}

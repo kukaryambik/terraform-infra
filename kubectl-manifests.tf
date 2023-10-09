@@ -3,16 +3,16 @@ locals {
 }
 
 provider "kubectl" {
-  host  = data.digitalocean_kubernetes_cluster.default.endpoint
-  token = data.digitalocean_kubernetes_cluster.default.kube_config.0.token
+  host  = module.do-k8s-cluster.endpoint
+  token = module.do-k8s-cluster.kube_config.token
   cluster_ca_certificate = base64decode(
-    data.digitalocean_kubernetes_cluster.default.kube_config.0.cluster_ca_certificate
+    module.do-k8s-cluster.kube_config.cluster_ca_certificate
   )
   load_config_file = false
 }
 
 resource "kubectl_manifest" "argocd-appset" {
-  count              = data.digitalocean_kubernetes_cluster.default.endpoint ? 1 : 0
+  count              = var.first_run ? 0 : 1
   depends_on         = [helm_release.argocd]
   override_namespace = "argocd"
   server_side_apply  = true
@@ -20,7 +20,7 @@ resource "kubectl_manifest" "argocd-appset" {
 }
 
 resource "kubectl_manifest" "onepassword-connect-ns" {
-  count             = data.digitalocean_kubernetes_cluster.default.endpoint ? 1 : 0
+  count             = var.first_run ? 0 : 1
   server_side_apply = true
   apply_only        = true
   ignore_fields = [
@@ -34,7 +34,7 @@ resource "kubectl_manifest" "onepassword-connect-ns" {
 }
 
 resource "kubectl_manifest" "onepassword-credentials" {
-  count              = data.digitalocean_kubernetes_cluster.default.endpoint ? 1 : 0
+  count              = var.first_run ? 0 : 1
   depends_on         = [kubectl_manifest.onepassword-connect-ns]
   override_namespace = local.opns
   server_side_apply  = true
@@ -45,7 +45,7 @@ resource "kubectl_manifest" "onepassword-credentials" {
 }
 
 resource "kubectl_manifest" "onepassword-token" {
-  count              = data.digitalocean_kubernetes_cluster.default.endpoint ? 1 : 0
+  count              = var.first_run ? 0 : 1
   depends_on         = [kubectl_manifest.onepassword-connect-ns]
   override_namespace = local.opns
   server_side_apply  = true
