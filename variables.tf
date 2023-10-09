@@ -17,3 +17,8 @@ variable "ARGOCD_PASSWORD" {
   type      = string
   sensitive = true
 }
+
+variable "GIT_CREDS" {
+  type      = string
+  sensitive = true
+}
