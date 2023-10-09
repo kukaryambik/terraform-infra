@@ -42,7 +42,7 @@ resource "digitalocean_app" "soursa-addon-test" {
       # A Git repo to use as the component's source.
       git {
         repo_clone_url = format("https://%s@bitbucket.org/soursa/soursa_backend.git", var.GIT_CREDS)
-        branch = "main"
+        branch = "master"
       }
 
       # An optional build command to run while building this component from source.
