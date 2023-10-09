@@ -1,15 +1,19 @@
+data "digitalocean_kubernetes_cluster" "default" {
+  name = module.do-k8s-cluster.name
+}
+
 provider "helm" {
   kubernetes {
-    host  = module.do-k8s-cluster.endpoint
-    token = module.do-k8s-cluster.kube_config.token
+    host  = data.digitalocean_kubernetes_cluster.default.endpoint
+    token = data.digitalocean_kubernetes_cluster.default.kube_config.token
     cluster_ca_certificate = base64decode(
-      module.do-k8s-cluster.kube_config.cluster_ca_certificate
+      data.digitalocean_kubernetes_cluster.default.kube_config.cluster_ca_certificate
     )
   }
 }
 
 resource "helm_release" "argocd" {
-  count      = module.do-k8s-cluster.endpoint ? 1 : 0
+  count      = data.digitalocean_kubernetes_cluster.default.endpoint ? 1 : 0
   name       = "argocd"
   repository = "https://argoproj.github.io/argo-helm"
   chart      = "argo-cd"
