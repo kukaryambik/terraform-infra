@@ -72,7 +72,7 @@ resource "digitalocean_app" "soursa-addon-test" {
       # db_name = "soursa"
 
       # The name of the MySQL or PostgreSQL user to configure.
-      db_user = "soursa"
+      # db_user = "soursa"
     }
 
   }
