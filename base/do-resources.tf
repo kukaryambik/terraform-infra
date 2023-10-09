@@ -1,5 +1,5 @@
 resource "digitalocean_project" "default" {
-  name        = "kroche-default"
+  name        = "kroche-co"
   description = "Pet project for self-development."
   purpose     = "Kubernetes Cluster"
   environment = "Production"

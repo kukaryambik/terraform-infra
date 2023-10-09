@@ -9,7 +9,7 @@ resource "digitalocean_app" "soursa-addon-test" {
     region = "ams" # Amsterdam
     domain {
       # The hostname for the domain.
-      name = "soursa"
+      name = "soursa.ondigitalocean.app"
       # The domain type
       type = "DEFAULT" # The default .ondigitalocean.app domain assigned to this app.
     }
