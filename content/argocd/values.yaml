@@ -3,7 +3,7 @@ createAggregateRoles: true
 configs:
   cm:
     admin.enabled: false
-    url: "https://argocd.kroche.co"
+    url: "https://argocd.iakimenko.link"
     dex.config: |
       connectors:
         - type: github
@@ -43,13 +43,14 @@ configs:
             end
           end
           return hs
+    statusbadge.enabled: "true"
   params:
     application.namespaces: "*"
     server.enable.gzip: true
   repositories:
     argocd-cluster:
       type: "git"
-      url: "https://github.com/kroche-co/argocd-cluster.git"
+      url: "https://github.com/kukaryambik/argocd-cluster.git"
       project: "default"
   rbac:
     create: true
