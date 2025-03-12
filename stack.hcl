@@ -1,5 +1,5 @@
 stack {
-  name = "my-infrastructure"
+  name = "terraform-infra"
 
   component "cluster" {
     source = "./cluster"
