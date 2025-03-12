@@ -1,10 +1,10 @@
 terraform {
   backend "remote" {
     hostname     = "app.terraform.io"
-    organization = "kroche"
+    organization = "a_iakimenko"
 
     workspaces {
-      name = "kroche-default"
+      name = "content"
     }
   }
 
