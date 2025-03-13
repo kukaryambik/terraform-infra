@@ -18,7 +18,7 @@ module "do-k8s-cluster" {
 
   project_name = digitalocean_project.default.name
 
-  name                      = "${digitalocean_project.default.name}"
+  name                      = digitalocean_project.default.name
   region                    = "ams3"
   kubernetes_version_prefix = "1.32."
   auto_upgrade              = true
@@ -49,5 +49,6 @@ output "cluster_token" {
 }
 
 output "cluster_ca_certificate" {
-  value = module.do-k8s-cluster.kube_config.cluster_ca_certificate
+  value     = module.do-k8s-cluster.kube_config.cluster_ca_certificate
+  sensitive = true
 }
