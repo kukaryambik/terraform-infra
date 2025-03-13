@@ -51,6 +51,6 @@ resource "kubectl_manifest" "onepassword-token" {
   server_side_apply  = true
   yaml_body = templatefile(
     "onepassword-connect/secret_onepassword-token.yaml",
-    { token = var.OP_TOKEN }
+    { token = base64encode(var.OP_TOKEN) }
   )
 }
