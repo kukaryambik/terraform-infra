@@ -26,7 +26,7 @@ data "terraform_remote_state" "base" {
     hostname     = "app.terraform.io"
     organization = "a_iakimenko"
     workspaces = {
-      name = "content"
+      name = "base"
     }
   }
 }
