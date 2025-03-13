@@ -38,7 +38,6 @@ resource "kubectl_manifest" "onepassword-credentials" {
   depends_on         = [kubectl_manifest.onepassword-connect-ns]
   override_namespace = local.opns
   force_new          = true
-  # server_side_apply  = true
   yaml_body = templatefile(
     "onepassword-connect/secret_onepassword-credentials.yaml",
     { creds = base64encode(var.OP_CREDENTIALS) }
@@ -50,9 +49,8 @@ resource "kubectl_manifest" "onepassword-token" {
   depends_on         = [kubectl_manifest.onepassword-connect-ns]
   override_namespace = local.opns
   force_new          = true
-  # server_side_apply  = true
   yaml_body = templatefile(
     "onepassword-connect/secret_onepassword-token.yaml",
-    { token = base64encode(var.OP_TOKEN) }
+    { token = var.OP_TOKEN }
   )
 }
