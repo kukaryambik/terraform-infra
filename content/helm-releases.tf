@@ -1,9 +1,9 @@
 provider "helm" {
   kubernetes {
-    host  = component.cluster.cluster_endpoint
-    token = component.cluster.cluster_token
+    host  = data.terraform_remote_state.base.outputs.cluster_endpoint
+    token = data.terraform_remote_state.base.outputs.cluster_token
     cluster_ca_certificate = base64decode(
-      component.cluster.cluster_ca_certificate
+      data.terraform_remote_state.base.outputs.cluster_ca_certificate
     )
   }
 }

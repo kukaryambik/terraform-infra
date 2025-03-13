@@ -3,10 +3,10 @@ locals {
 }
 
 provider "kubectl" {
-  host  = module.do-k8s-cluster.endpoint
-  token = module.do-k8s-cluster.kube_config.token
+  host  = data.terraform_remote_state.base.outputs.cluster_endpoint
+  token = data.terraform_remote_state.base.outputs.cluster_token
   cluster_ca_certificate = base64decode(
-    module.do-k8s-cluster.kube_config.cluster_ca_certificate
+    data.terraform_remote_state.base.outputs.cluster_ca_certificate
   )
   load_config_file = false
 }

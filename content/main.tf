@@ -19,3 +19,14 @@ terraform {
     }
   }
 }
+
+data "terraform_remote_state" "base" {
+  backend = "remote"
+  config = {
+    hostname     = "app.terraform.io"
+    organization = "a_iakimenko"
+    workspaces = {
+      name = "content"
+    }
+  }
+}

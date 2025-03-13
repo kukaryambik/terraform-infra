@@ -50,5 +50,4 @@ output "cluster_token" {
 
 output "cluster_ca_certificate" {
   value = module.do-k8s-cluster.kube_config.cluster_ca_certificate
-  sensitive = true
 }
